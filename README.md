@@ -1,14 +1,15 @@
 The are two projects ： QtChartWidget and Splitter, which are introduced in detail as follows.
 
 
-#（1） QtChartWidget
+#QtChartWidget
+
 Imitating displaying multiple real-time curves in qt, by reading datas from a file.
 
 The belowing is the ultimate gui.
 
 ![](https://github.com/liming467/QtChartWidget/blob/master/gui.png)
 
-Curves is showed mainly using QChart. It's noted that axisX and axisY have been deprecated. An alternative solution is to use QValueAxis, 
+Curve is showed mainly using QChart. It's noted that axisX and axisY have been deprecated. An alternative solution is to use QValueAxis, 
 
 addAxis, and attachAxis. When using the attachAxis function, you need to figure out which axis your series use in case of the appearance 
 
@@ -20,7 +21,7 @@ Beside the table, two radioButton in groupBox help to set the status of checkBox
 
 
 
-#（2） Splitter
+#Splitter
 
 The interface is designed as showing the curve of processed data. In the meanwhile, you can see source and result data in two table, 
 
