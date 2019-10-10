@@ -1,4 +1,6 @@
 The are two projects ： QtChartWidget and Splitter, which are introduced in detail as follows.
+
+
 #（1） QtChartWidget
 Imitating displaying multiple real-time curves in qt, by reading datas from a file.
 
