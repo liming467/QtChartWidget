@@ -365,15 +365,19 @@ void MainWindow::fftFilter(QVector<QPointF> &src_pointVector,QVector<QPointF> &p
                 Re1[i]+=src_pointVector.at(j).y()*cos(-2*PI*i*j/count);
                 Im1[i]+=src_pointVector.at(j).y()*sin(-2*PI*i*j/count);
             }
-
+    
+    //第一个点和最后一个点(count=0和count/2)需要除以N,其余点的模需要除以N/2
     double x=0.0,y=0.0;
     y=sqrt(Re1[0]*Re1[0]+Im1[0]*Im1[0])/count;
     post_pointVector.append(QPointF(x,y));
-    for (int i=1;i<count/2+1;i++){
+    for (int i=1;i<count/2;i++){
         x=i*SamplingFreq/count;
         y=sqrt(Re1[i]*Re1[i]+Im1[i]*Im1[i])*2.0/count;
         post_pointVector.append(QPointF(x,y));
     }
+    x=(count/2)*SamplingFreq/count;
+    y=sqrt(Re1[count/2]*Re1[count/2]+Im1[count/2]*Im1[count/2])/count;
+    post_pointVector.append(QPointF(x,y));
 
 
     delete [] Re1;
