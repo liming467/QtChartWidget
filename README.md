@@ -28,9 +28,18 @@ Beside the table, two radioButton in groupBox help to set the status of checkBox
 /************************************ Splitter *********************************************/ 
 
 
-The interface is designed as showing the curve of processed data. In the meanwhile, you can see source and result data in two table, 
+The interface is designed as showing the curve of processed 1d data. In the meanwhile, you can see source and result data in two table, respectively. There are several functions as follows.
+(1)median filter for 1d data;
 
-respectively. There are three functions as the following image shows. 
+(2)average filter for 1d data;
+
+(3)gaussian filter for 1d data;
+
+(4)Fouier transformation for 1d data without acceleration;
+
+(5)fast Fouier transformation for 1d data with zero-padding in most situations;
+
+(6)an example to verify the calculated fft result comparing with the result obtained by matlab.   
 ![](https://github.com/liming467/QtChartWidget/blob/master/actions.png)
 
 After you run the program, a file dialog will warn you to select a .txt file as source file that will be processed soon. It's suggest that you should select 3.txt in the file of QtChartWidget project, or it might go wrong. Of course, you can modify the codes to satisfy your specific need. 
