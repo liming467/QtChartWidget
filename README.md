@@ -39,7 +39,7 @@ The interface is designed as showing the curve of processed 1d data. In the mean
 
 (5)fast Fouier transformation for 1d data with zero-padding in most situations;
 
-(6)an example to verify the calculated fft result comparing with the result obtained by matlab.   
+(6)an example to verify the calculated fft result comparing with the result obtained by matlab(the matlab script file(m file) has been uploaded).   
 ![](https://github.com/liming467/QtChartWidget/blob/master/actions.png)
 ![](https://github.com/liming467/QtChartWidget/blob/master/comparation.png)
 The comparison between the results calculated by matlab(the left) and this program(the right). After checked, the both results are the same.    
