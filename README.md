@@ -30,7 +30,8 @@ Beside the table, two radioButton in groupBox help to set the status of checkBox
 
 The interface is designed as showing the curve of processed data. In the meanwhile, you can see source and result data in two table, 
 
-respectively. 
+respectively. There are three functions as the following image shows. 
+![](https://github.com/liming467/QtChartWidget/blob/master/actions.png)
 
 After you run the program, a file dialog will warn you to select a .txt file as source file that will be processed soon. It's suggest that you should select 3.txt in the file of QtChartWidget project, or it might go wrong. Of course, you can modify the codes to satisfy your specific need. 
 
