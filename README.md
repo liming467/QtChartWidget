@@ -1,7 +1,8 @@
 The are two projects ： QtChartWidget and Splitter, which are introduced in detail as follows.
 
 
-#QtChartWidget
+/************************************ QtChartWidget *********************************************/ 
+
 
 Imitating displaying multiple real-time curves in qt, by reading datas from a file.
 
@@ -21,7 +22,9 @@ Beside the table, two radioButton in groupBox help to set the status of checkBox
 
 
 
-#Splitter
+
+/************************************ Splitter *********************************************/ 
+
 
 The interface is designed as showing the curve of processed data. In the meanwhile, you can see source and result data in two table, 
 
