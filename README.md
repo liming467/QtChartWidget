@@ -23,6 +23,8 @@ Beside the table, two radioButton in groupBox help to set the status of checkBox
 
 
 
+
+
 /************************************ Splitter *********************************************/ 
 
 
