@@ -41,6 +41,10 @@ The interface is designed as showing the curve of processed 1d data. In the mean
 
 (6)an example to verify the calculated fft result comparing with the result obtained by matlab.   
 ![](https://github.com/liming467/QtChartWidget/blob/master/actions.png)
+![](https://github.com/liming467/QtChartWidget/blob/master/comparation.png)
+The comparison between the results calculated by matlab(the left) and this program(the right). After checked, the both results are the same.    
+
+
 
 After you run the program, a file dialog will warn you to select a .txt file as source file that will be processed soon. It's suggest that you should select 3.txt in the file of QtChartWidget project, or it might go wrong. Of course, you can modify the codes to satisfy your specific need. 
 
