@@ -173,22 +173,29 @@ void MainWindow::medianFilter(QVector<QPointF> &src_pointVector,QVector<QPointF>
     }
 
 
-    InputDialog dlg;
+    /*InputDialog dlg;
     connect(&dlg,SIGNAL(emitRadius(int,int)),this,SLOT(setRadius(int,int)));
     int nRet=dlg.exec();
     if(nRet == QDialog::Rejected)
-        return;
+        return;*/
 
     post_pointVector.clear();
     //you start coding your filter func here
 
+    radius=3;
+
+
+    double average=0.0;
     typedef double element;//放置窗口并实现窗口的移动
+    element *window=new element[radius];//window[n]
     for (int i = radius/2; i < src_pointVector.size()-radius/2 ; ++i)
     {
         //   取出窗口的元素
-        element *window=new element[radius];//window[n]
-        for (int j = 0; j < radius; ++j){//for (int j = 0; j < n; ++j)
-            window[j] = src_pointVector.at(i - radius/2 + j).y();
+
+        int count=0;
+        for (int j = i - radius/2; j <= i+radius/2; ++j){//for (int j = 0; j < n; ++j)
+            window[count] = src_pointVector.at(j).y();
+            count++;
         }
         //   取出 窗口元素排序
         for (int j = 0; j < radius/2+1; ++j)//for (int j = 0; j < n/2+0.5; ++j)
@@ -205,10 +212,14 @@ void MainWindow::medianFilter(QVector<QPointF> &src_pointVector,QVector<QPointF>
         //   Get result - the middle element
         //QMessageBox::information(this,"Warning",str1);
 
-        post_pointVector.append(QPointF(src_pointVector.at(i - radius/2).x(),window[radius/2]));
-        //post_pointVector.at(i - 2).y() = window[2];
-        delete [] window;
+        average=window[radius/2];
+
+
+        post_pointVector.append(QPointF(i - radius/2,average));
+
     }
+
+    delete [] window;
 
     //you finish coding your filter codes here
 
@@ -244,26 +255,15 @@ void MainWindow::averageFilter(QVector<QPointF> &src_pointVector,QVector<QPointF
 
     //you start coding your filter func here
 
-    QString str1="";
-
-    typedef double element;//放置窗口并实现窗口的移动
-    for (int i = radius/2; i < src_pointVector.size() - radius/2; ++i)
+    for (int i = radius/2; i < src_pointVector.size()-radius/2; ++i)
     {
-        //   取出窗口的元素
-        element *window=new element[radius];//window[n]
-        for (int j = 0; j < radius; ++j){//for (int j = 0; j < n; ++j)
-            window[j] = src_pointVector.at(i - radius/2 + j).y();
-        }
-        //取出 窗口元素排序
         double sum = 0;
-        for (int j = 0; j <radius; ++j)//for (int j = 0; j < n/2+0.5; ++j)
-        {//寻找当前窗口中的和
-            sum+=window[j];        }
+        for (int j = i-radius/2; j <= i+radius/2; ++j){
+            sum+=src_pointVector.at(j).y();
+        }
 
-        double average  = sum/radius;
-        //   Get result - the middle element
-
-        post_pointVector.append(QPointF(src_pointVector.at(i - radius/2).x(),average ));
+        sum/=radius;
+        post_pointVector.append(QPointF(i - radius/2,sum ));
         //post_pointVector.at(i - 2).y() = window[2];
     }
 
@@ -307,8 +307,8 @@ void MainWindow::gaussFilter(QVector<QPointF> &src_pointVector,QVector<QPointF> 
     int size = radius;
     double sigma = m_sigma;
     double* gauss = new double[size];
-    int real_radius = (size - 1) / 2;
-    double MySigma = 2 *M_PI* sigma*sigma;
+    int real_radius = (size-1)/2;
+    double MySigma = 2*sigma*sigma;
     double value = 0;
 
     for (int i = 0; i < size; i++)
@@ -319,29 +319,31 @@ void MainWindow::gaussFilter(QVector<QPointF> &src_pointVector,QVector<QPointF> 
 
     for (int i = 0; i < size; i++)
     {
-        gauss[i] = gauss[i] / value;
+        gauss[i] /= value;
     }
 
     typedef double element;//放置窗口并实现窗口的移动
-    for (int i = radius/2; i < src_pointVector.size() - radius/2; ++i)
+    element *window=new element[size];
+    double WeightedMean = 0.0;
+    int count=0;
+    for (int i = size/2; i < src_pointVector.size() - size/2; ++i)
     {
-        element *window=new element[radius];
-        for (int j = 0; j < radius; ++j)
+        count=0;
+        WeightedMean = 0.0;
+        for (int j = i-size/2; j <= i+size/2; ++j)
         {
-            window[j] = src_pointVector.at(i - radius/2 + j).y();
+            window[count] = src_pointVector.at(j).y();
+            WeightedMean += gauss[count] * window[count];
+            count++;
         }
 
-        double WeightedMean = 0;
-         for (int  i = 0; i < radius; ++i)
-        {
-             WeightedMean += gauss[i] * window[i];
-        }
-        //   Get result - the weightmean element
-
-        post_pointVector.append(QPointF(src_pointVector.at(i - radius/2).x(),WeightedMean));
+        post_pointVector.append(QPointF(i - radius/2,WeightedMean));
 
         //post_pointVector.at(i - 2).y() = weightmean;
     }
+    
+    delete [] window;
+    delete [] gauss;
 
     //you finish coding your filter codes here
 
