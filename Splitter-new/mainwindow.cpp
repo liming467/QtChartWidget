@@ -113,7 +113,7 @@ void MainWindow::_Read_data()
 
         if(!line.isEmpty())
         {
-            QStringList list=line.split(QRegExp(","),QString::SkipEmptyParts);
+            QStringList list=line.split(QRegExp(","),QString::SkipEmptyParts);//multiple separator：QRegExp("[, ;\t]+"))
             source_pointVector.append(QPointF(list.at(0).toDouble(),list.at(1).toDouble()));
             //post_pointVector.append(QPointF(list.at(0).toDouble(),list.at(2).toDouble()));
 
