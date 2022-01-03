@@ -253,6 +253,7 @@ void MainWidget::initTable(int pointsNumber)
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     //默认显示行头，如果你觉得不美观的话，我们可以将隐藏
     ui->tableView->verticalHeader()->hide();
+    ui.tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);//所有列都扩展自适应宽度，填充充满整个屏幕宽度
     //ui->tableView->setColumnWidth(1,80);//第（0+1）列表格宽80
     ui->tableView->setColumnWidth(1,100);//第（0+1）列表格宽80
 
